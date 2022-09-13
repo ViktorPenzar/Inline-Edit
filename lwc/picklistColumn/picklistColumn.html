@@ -1,0 +1,34 @@
+<!-- sldsValidatorIgnore -->
+<template>
+    <div if:true={showPicklist} >
+        <lightning-combobox
+            name="picklist"
+            label={label}
+            value={value}
+            placeholder={placeholder}
+            options={options}
+            variant='label-hidden'
+            onchange={handleChange}
+            onblur={closePicklist}
+            class="combobox"
+            style="position:absolute;top:0;left:0">
+        </lightning-combobox>
+    </div>
+    <div if:false={showPicklist} class="slds-table_edit_container slds-is-relative">
+        <span class="slds-grid slds-grid_align-spread slds-cell-edit">
+            <span class="slds-truncate" title={value}>{value}</span>
+            <lightning-button-icon
+                data-id={context}
+                tabindex="-1"
+                title="Edit"
+                name="tes"
+                onclick={handleClick}
+                data-name="myButtonName"
+                icon-name="utility:edit"
+                icon-class="slds-button__icon_edit"
+                variant="bare"
+                class="slds-cell-edit__button slds-m-left_x-small slds-button__icon_hint">
+            </lightning-button-icon>
+        </span>
+    </div>
+</template>

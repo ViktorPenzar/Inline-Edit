@@ -1,0 +1,29 @@
+<template>
+    <lightning-card title="Inline Datatable Edit With PickList" icon-name="standard:folder">
+        <div class="slds-var-p-around_small">
+            <template if:true={data}>
+                <c-custom-datatable
+                    key-field="Id"
+                    data={data}
+                    columns={columns}
+                    onpicklistchanged={picklistChanged}
+                    onvalueselect={handleSelection}
+                    draft-values={draftValues}
+                    oncellchange={handleCellChange}
+                    onsave={handleSave}
+                    oncancel={handleCancel}
+                    onrowaction={deleteAccount}
+                    column-widths-mode="auto"
+                    hide-checkbox-column>
+                </c-custom-datatable>
+            </template>
+        </div>
+    </lightning-card>
+    <c-delete-Account-Modal
+        if:true={deleteAccountModal}
+        class="slds-show slds-is-relative"
+        recordid={recordId}
+        onrefresh={haldleRefresh}
+        onclose={haldleClose}>
+    </c-delete-Account-Modal>
+</template>
