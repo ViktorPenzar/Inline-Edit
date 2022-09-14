@@ -49,7 +49,6 @@ export default class InlineEditTableHtml extends LightningElement {
     wirePickList({ error, data }) {
         if (data) {
             this.pickListOptions = data.values;
-            console.log('The picklist options: ' + JSON.stringify(this.pickListOptions));
         } else if (error) {
             console.log(error);
         }
@@ -58,7 +57,6 @@ export default class InlineEditTableHtml extends LightningElement {
     handleNameAction(event){
         if(this.backupData.length === 0) {
             this.backupData = JSON.parse(JSON.stringify(this.data));
-            console.log('Backup Data',this.data, this.backupData);
         }
         this.data[event.target.dataset.index].nameReadOnly = false;
         this.data = [...this.data];
@@ -67,7 +65,6 @@ export default class InlineEditTableHtml extends LightningElement {
     handleRatingAction(event) {
         if(this.backupData.length === 0) {
             this.backupData = JSON.parse(JSON.stringify(this.data));
-            console.log('Backup Data 2',this.data, this.backupData);
         }
         this.data[event.target.dataset.index].ratingReadOnly = false;
         this.data = [...this.data];

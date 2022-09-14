@@ -36,7 +36,6 @@ export default class InlineEditHtml22 extends LightningElement {
     wirePickList({ error, data }) {
         if (data) {
             this.pickListOptions = data.values;
-            console.log('The picklist options: ' + JSON.stringify(this.pickListOptions));
         } else if (error) {
             console.log(error);
         }
@@ -45,7 +44,6 @@ export default class InlineEditHtml22 extends LightningElement {
     @wire(getAccounts, { pickList: '$pickListOptions' })
     accountData(result) {
         this.accountData = result;
-        console.log('Data', this.accountData)
         if (result.data) {
             this.data = JSON.parse(JSON.stringify(result.data));
             this.data.forEach(element => {
