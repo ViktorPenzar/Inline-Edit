@@ -1,21 +1,7 @@
 <!-- sldsValidatorIgnore -->
 <template>
-    <div if:true={showPicklist} >
-        <lightning-combobox
-            name="picklist"
-            label={label}
-            value={value}
-            placeholder={placeholder}
-            options={options}
-            variant='label-hidden'
-            onchange={handleChange}
-            onblur={closePicklist}
-            class="combobox"
-            style="position:absolute;top:0;left:0">
-        </lightning-combobox>
-    </div>
-    <div if:false={showPicklist} class="slds-table_edit_container slds-is-relative">
-        <span class="slds-grid slds-grid_align-spread slds-cell-edit">
+    <div  class="slds-cell-edit slds-cell_action-mode">
+        <span if:false={showPicklist} class="slds-grid slds-grid_align-spread">
             <span class="slds-truncate" title={value}>{value}</span>
             <lightning-button-icon
                 data-id={context}
@@ -25,10 +11,40 @@
                 onclick={handleClick}
                 data-name="myButtonName"
                 icon-name="utility:edit"
-                icon-class="slds-button__icon_edit"
-                variant="bare"
-                class="slds-cell-edit__button slds-m-left_x-small slds-button__icon_hint">
+                variant="bare" 
+                class="slds-button__icon_edit slds-m-left_x-small slds-button__icon_hint">
             </lightning-button-icon>
         </span>
+        <section
+            if:true={showPicklist}
+            aria-describedby="dialog-body-id-14"
+            class="slds-popover slds-popover_edit"
+            role="dialog"
+            style="position:absolute;top:0;left:0.0625rem">
+            <div class="slds-popover__body">
+                <div class="slds-media">
+                    <div class="slds-media__body">
+                        <div class="slds-form-element slds-grid slds-wrap">
+                            <label class="slds-form-element__label slds-form-element__label_edit slds-no-flex">
+                                <span class="slds-assistive-text" title={value}>{value}</span>
+                            </label>
+                            <div class="slds-form-element__control slds-grow" >
+                                <lightning-combobox
+                                    class="combobox"
+                                    variant="label-hidden"
+                                    name="picklist"
+                                    label={label}
+                                    value={value}
+                                    placeholder={placeholder}
+                                    options={options}
+                                    onchange={handleChange}
+                                    onblur={closePicklist}>
+                                </lightning-combobox>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </div>
 </template>

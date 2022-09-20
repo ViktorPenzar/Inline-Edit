@@ -8,6 +8,7 @@ export default class DeleteAccountModal extends LightningElement {
     @api recordId;
 
     handleDelete() {
+        console.log('Record id in modal window', JSON.stringify(this.recordId))
         deleteRecord(this.recordId)
         .then(() => {
             this.dispatchEvent(

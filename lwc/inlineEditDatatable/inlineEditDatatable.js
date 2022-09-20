@@ -135,6 +135,7 @@ export default class InlineEditHtml22 extends LightningElement {
     deleteAccount(event) {
         this.deleteAccountModal = true;
         this.recordId = event.detail.row.Id;
+        console.log('Record Id datatable', JSON.stringify(this.recordId)); 
     }
 
     haldleRefresh() {

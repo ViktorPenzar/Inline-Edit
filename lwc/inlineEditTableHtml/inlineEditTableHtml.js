@@ -16,6 +16,7 @@ export default class InlineEditTableHtml extends LightningElement {
     draftValues = [];
     refreshTable;
     pickListOptions;
+    disabled = false;
 
     showInlineEditName = false;
     showInlineEditRating = false;
@@ -31,14 +32,15 @@ export default class InlineEditTableHtml extends LightningElement {
                 rowData.Id = row.Id
                 rowData.Name = row.Name;
                 rowData.Rating = row.Rating;
-                rowData.rowNumber = i++;
+                //rowData.rowNumber = i++;
                 rowData.nameReadOnly = true;
                 rowData.ratingReadOnly = true;
-                rowData.nameCellColor = JSON.stringify('');
-                rowData.ratingCellColor = JSON.stringify('');
+                rowData.nameCellColor = JSON.parse(JSON.stringify('slds-cell-edit slds-cell_action-mode slds-hint-parent'));
+                rowData.ratingCellColor = JSON.parse(JSON.stringify('slds-cell-edit slds-cell_action-mode slds-hint-parent'));
                 currentData.push(rowData);
             });
             this.data = currentData;
+            console.log('Data 1111', JSON.stringify(this.data));
         }
     }
 
@@ -60,6 +62,7 @@ export default class InlineEditTableHtml extends LightningElement {
         }
         this.data[event.target.dataset.index].nameReadOnly = false;
         this.data = [...this.data];
+        this.disabled = true;
     }
 
     handleRatingAction(event) {
@@ -68,21 +71,26 @@ export default class InlineEditTableHtml extends LightningElement {
         }
         this.data[event.target.dataset.index].ratingReadOnly = false;
         this.data = [...this.data];
+        this.disabled = true;
     }
 
     onNameBlur(event) {
         this.data[event.target.dataset.index].nameReadOnly = true;
         this.data = [...this.data];
         if(event.currentTarget.value.trim() != this.refreshTable.data[event.target.dataset.index].Name && event.currentTarget.value != undefined && event.currentTarget.value.trim() != '') {
-            this.data[event.target.dataset.index].nameCellColor = 'slds-is-edited';
+            this.data[event.target.dataset.index].nameCellColor = 'slds-cell-edit slds-is-edited slds-cell_action-mode slds-hint-parent';
+            this.disabled = true;
+        }
+        if(event.currentTarget.value.trim() == this.refreshTable.data[event.target.dataset.index].Name) {
+            this.disabled = false;
         }
     }
 
     onRatingBlur(event) {
         this.data[event.target.dataset.index].ratingReadOnly = true;
         this.data = [...this.data];
-        if(event.currentTarget.value != this.refreshTable.data[event.target.dataset.index].Rating) {
-            this.data[event.target.dataset.index].ratingCellColor = 'slds-is-edited';
+        if(event.currentTarget.value == this.refreshTable.data[event.target.dataset.index].Rating) {
+            this.disabled = false;
         }
     }
 
@@ -96,12 +104,17 @@ export default class InlineEditTableHtml extends LightningElement {
     }
 
     onRatingChange(event) {
+        this.showSaveCancelButton = true;
         if(event.currentTarget.value != undefined && event.currentTarget.value != ''){
-            this.showSaveCancelButton = true;
             this.draftValue = { Rating: event.target.value, Id: event.target.dataset.id }
             this.draftValues.push(this.draftValue);
             this.data[event.target.dataset.index].Rating = event.target.value;
             this.data = [...this.data];
+            this.data[event.target.dataset.index].ratingReadOnly = true;
+            this.data = [...this.data];
+        }
+        if(event.currentTarget.value != this.refreshTable.data[event.target.dataset.index].Rating) {
+            this.data[event.target.dataset.index].ratingCellColor = 'slds-cell-edit slds-is-edited slds-cell_action-mode slds-hint-parent';
         }
     }
 
@@ -126,6 +139,7 @@ export default class InlineEditTableHtml extends LightningElement {
             );
             this.showSaveCancelButton = false;
             await refreshApex(this.refreshTable);
+            this.disabled = false;
         } catch (error) {
             this.dispatchEvent(
                 new ShowToastEvent({
@@ -136,12 +150,20 @@ export default class InlineEditTableHtml extends LightningElement {
             );
             this.showSaveCancelButton = false;
             await refreshApex(this.refreshTable);
+            this.disabled = false;
         }
     }
 
     deleteAccount(event) {
         this.deleteAccountModal = true;
-        this.recordId = event.target.dataset.id;  
+        this.recordId = event.target.dataset.id;
+        if(this.showSaveCancelButton == true) {
+            this.draftValues = [];
+            this.showSaveCancelButton = false;
+            this.disabled = false;
+            this.data = this.backupData;
+            this.backupData = [];
+        }
     }
 
     haldleRefresh() {
@@ -152,11 +174,19 @@ export default class InlineEditTableHtml extends LightningElement {
     handleCancel() {
         this.draftValues = [];
         this.showSaveCancelButton = false;
+        this.disabled = false;
         this.data = this.backupData;
         this.backupData = [];
     }
 
     haldleClose() {
         this.deleteAccountModal = false;
+        if(this.showSaveCancelButton == true) {
+            this.draftValues = [];
+            this.showSaveCancelButton = false;
+            this.disabled = false;
+            this.data = this.backupData;
+            this.backupData = [];
+        }
     }
 }

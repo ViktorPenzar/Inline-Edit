@@ -18,9 +18,7 @@ export default class PicklistColumn extends LightningElement {
         this.template.querySelector("lightning-combobox")?.focus();
     }
 
-    closePicklist() {
-        this.showPicklist = false;
-    }
+    closePicklist() { }
 
     handleChange(event) {
         this.value = event.detail.value;
@@ -32,6 +30,7 @@ export default class PicklistColumn extends LightningElement {
                 data: { context: this.context, value: this.value }
             }
         }));
+        this.showPicklist = false;
     }
 
     handleClick() {

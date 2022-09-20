@@ -13,7 +13,6 @@
                     onsave={handleSave}
                     oncancel={handleCancel}
                     onrowaction={deleteAccount}
-                    column-widths-mode="auto"
                     hide-checkbox-column>
                 </c-custom-datatable>
             </template>
@@ -22,7 +21,7 @@
     <c-delete-Account-Modal
         if:true={deleteAccountModal}
         class="slds-show slds-is-relative"
-        recordid={recordId}
+        record-id={recordId}
         onrefresh={haldleRefresh}
         onclose={haldleClose}>
     </c-delete-Account-Modal>
