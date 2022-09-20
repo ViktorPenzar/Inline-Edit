@@ -32,7 +32,6 @@ export default class InlineEditTableHtml extends LightningElement {
                 rowData.Id = row.Id
                 rowData.Name = row.Name;
                 rowData.Rating = row.Rating;
-                //rowData.rowNumber = i++;
                 rowData.nameReadOnly = true;
                 rowData.ratingReadOnly = true;
                 rowData.nameCellColor = JSON.parse(JSON.stringify('slds-cell-edit slds-cell_action-mode slds-hint-parent'));
@@ -40,7 +39,6 @@ export default class InlineEditTableHtml extends LightningElement {
                 currentData.push(rowData);
             });
             this.data = currentData;
-            console.log('Data 1111', JSON.stringify(this.data));
         }
     }
 
@@ -53,6 +51,7 @@ export default class InlineEditTableHtml extends LightningElement {
             this.pickListOptions = data.values;
         } else if (error) {
             console.log(error);
+            this.showToast('Error', 'An Error Occured!!', 'error', 'dismissable');
         }
     }
 

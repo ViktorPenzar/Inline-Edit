@@ -2,63 +2,57 @@
 <template>
     <lightning-card title="Inline Edit Html Example" icon-name="standard:folder">
         <div if:true={data} class="slds-table_edit_container slds-is-relative slds-m-around_medium">
-            <table
+            <table class="slds-table slds-table_bordered slds-table_edit slds-table_fixed-layout slds-table_resizable-cols"
                 aria-multiselectable="true"
-                class="slds-table slds-table_bordered slds-table_edit slds-table_fixed-layout slds-table_resizable-cols"
                 role="grid" aria-label="Example inline edit table in actionable mode with cell edited">
                 <thead>
                     <tr class="slds-line-height_reset">
-                        <th class="slds-cell_action-mode" scope="col" style="width:0.75rem">
+                        <th class="number slds-cell_action-mode" scope="col">
                             <div class="slds-truncate slds-assistive-text" title="Errors">Errors</div>
                         </th>
-                        <th
+                        <th class="name slds-is-resizable slds-is-sortable slds-cell_action-mode"
                             aria-label="Account Name"
                             aria-sort="none"
-                            class="slds-is-resizable slds-is-sortable slds-cell_action-mode"
-                            scope="col" style="width:6.75rem">
+                            scope="col">
                             <a class="slds-th__action slds-text-link_reset" href="#" role="button" tabindex="0">
                                 <span class="slds-assistive-text">Sort by: </span>
                                 <div class="slds-grid slds-grid_vertical-align-center slds-has-flexi-truncate">
                                     <span class="slds-truncate" title="Account Name">Name</span>
                                     <span class="slds-icon_container slds-icon-utility-arrowdown">
                                         <svg class="slds-icon slds-icon-text-default slds-is-sortable__icon " aria-hidden="true">
-                                            <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#arrowdown"></use>
+                                            <use xlink:href="/_slds/icons/utility-sprite/svg/symbols.svg?cache=9.40.4#arrowdown"></use>
                                         </svg>
                                     </span>
                                 </div>
                             </a>
                         </th>
-                        <th
+                        <th class="rating slds-is-resizable slds-is-sortable slds-cell_action-mode"
                             aria-label="Account Rating"
                             aria-sort="none"
-                            class="slds-is-resizable slds-is-sortable slds-cell_action-mode"
-                            scope="col"
-                            style="width:6.75rem">
+                            scope="col">
                             <a class="slds-th__action slds-text-link_reset" href="#" role="button" tabindex="0">
                                 <span class="slds-assistive-text">Sort by: </span>
                                 <div class="slds-grid slds-grid_vertical-align-center slds-has-flexi-truncate">
                                     <span class="slds-truncate" title="Account Rating">Rating</span>
                                     <span class="slds-icon_container slds-icon-utility-arrowdown">
                                         <svg class="slds-icon slds-icon-text-default slds-is-sortable__icon " aria-hidden="true">
-                                            <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#arrowdown"></use>
+                                            <use xlink:href="/_slds/icons/utility-sprite/svg/symbols.svg?cache=9.40.4#arrowdown"></use>
                                         </svg>
                                     </span>
                                 </div>
                             </a>
                         </th>
-                        <th
+                        <th class="action slds-is-resizable slds-is-sortable slds-cell_action-mode"
                             aria-label="Actions"
                             aria-sort="none"
-                            class="slds-is-resizable slds-is-sortable slds-cell_action-mode"
-                            scope="col"
-                            style="width:6.75rem">
+                            scope="col">
                             <a class="slds-th__action slds-text-link_reset" href="#" role="button" tabindex="0">
                                 <span class="slds-assistive-text">Sort by: </span>
                                 <div class="slds-grid slds-grid_vertical-align-center slds-has-flexi-truncate">
                                     <span class="slds-truncate" title="Actions">Actions</span>
                                     <span class="slds-icon_container slds-icon-utility-arrowdown">
                                         <svg class="slds-icon slds-icon-text-default slds-is-sortable__icon " aria-hidden="true">
-                                            <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#arrowdown"></use>
+                                            <use xlink:href="/_slds/icons/utility-sprite/svg/symbols.svg?cache=9.40.4#arrowdown"></use>
                                         </svg>
                                     </span>
                                 </div>
@@ -89,7 +83,8 @@
                                 tabindex="0"
                                 title="Item 1 has errors">
                                 <svg class="slds-button__icon" aria-hidden="true">
-                                    <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#error"></use>
+                                    <!--<use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#error"></use>-->
+                                    <use xlink:href="/_slds/icons/utility-sprite/svg/symbols.svg?cache=9.40.4#error"></use>
                                 </svg>
                                 <span class="slds-assistive-text">Item 1 has errors</span>
                             </button>

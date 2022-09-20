@@ -38,6 +38,7 @@ export default class InlineEditHtml22 extends LightningElement {
             this.pickListOptions = data.values;
         } else if (error) {
             console.log(error);
+            this.showToast('Error', 'An Error Occured!!', 'error', 'dismissable');
         }
     }
 
@@ -89,7 +90,6 @@ export default class InlineEditHtml22 extends LightningElement {
         event.stopPropagation();
         let dataRecieved = event.detail.data;
         let updatedItem = { Id: dataRecieved.context, Rating: dataRecieved.value };
-        console.log(updatedItem);
         this.updateDraftValues(updatedItem);
         this.updateDataValues(updatedItem);
     }
@@ -135,7 +135,6 @@ export default class InlineEditHtml22 extends LightningElement {
     deleteAccount(event) {
         this.deleteAccountModal = true;
         this.recordId = event.detail.row.Id;
-        console.log('Record Id datatable', JSON.stringify(this.recordId)); 
     }
 
     haldleRefresh() {
